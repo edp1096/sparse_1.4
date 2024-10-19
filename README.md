@@ -6,10 +6,18 @@ MinGW compilation
 
 ```powershell
 cd src
+make clean
 make
 
 cd ..
 cd bin
 
  .\sparse.exe .\mat0
+```
+
+```powershell
+gcc -I src main.c -L lib -l sparse -o bin/ac.exe
+
+cd bin
+.\ac.exe
 ```

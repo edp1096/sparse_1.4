@@ -18,7 +18,8 @@ CFILES = spAllocate.c spBuild.c spFactor.c spOutput.c spSolve.c spUtils.c \
 	 spFortran.c
 OFILES = spAllocate.o spBuild.o spFactor.o spOutput.o spSolve.o spUtils.o \
 	 spFortran.o
-LIBRARY = ../lib/sparse.a
+# LIBRARY = ../lib/sparse.a
+LIBRARY = ../lib/libsparse.a
 DESTINATION = ../bin/sparse
 TESTC = spTest.c
 TESTO = spTest.o
