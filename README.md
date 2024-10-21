@@ -12,7 +12,7 @@ make
 cd ..
 cd bin
 
- .\sparse.exe .\mat0
+.\sparse.exe .\mat0
 ```
 
 ```powershell
