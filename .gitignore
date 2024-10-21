@@ -1,3 +1,6 @@
 *.a
-*.exe
 *.o
+bin/*.exe
+bin/ac
+bin/dc
+bin/sparse

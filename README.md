@@ -17,7 +17,7 @@ cd bin
 
 ```powershell
 cd examples/ac
-gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/ac.exe
+gcc -I ../../src main.c -L ../../lib -l sparse -l m -o ../../bin/ac.exe
 
 cd bin
 .\ac.exe

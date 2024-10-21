@@ -95,6 +95,11 @@ static char RCSid[] =
 #define HZ CLK_TCK
 #endif
 
+#if defined(__GNUC__)
+#include <time.h>
+#define HZ CLOCKS_PER_SEC
+#endif
+
 /* MSVC */
 #if defined(_MSC_VER)
 #include <time.h>
