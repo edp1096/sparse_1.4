@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #include "spMatrix.h"
 
 int main(int argc, char **argv) {
@@ -42,6 +41,7 @@ int main(int argc, char **argv) {
         return 1;
     }
     spSolve(A, b, x);
+
     printf("Voltage at node 1 (V1): %.4f V\n", x[1]);
     printf("Voltage at node 2 (V2, output): %.4f V\n", x[2]);
     printf("Division ratio (R2 / (R1 + R2)): %.4f\n", x[2] / Vin);
