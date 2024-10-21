@@ -47,7 +47,8 @@ int main(int argc, char **argv) {
     b[2].im = 0.0;
 
     /* Perform AC analysis over a range of frequencies. */
-    for (f = 0.0; f <= 100000.0; f += 1000.0) {
+    // for (f = 0.0; f <= 100000.0; f += 1000.0) {
+    for (f = 0.0; f <= 2000.0; f += 1000.0) {
         omega = 2.0 * M_PI * f;
 
         /* Load the matrix. */
