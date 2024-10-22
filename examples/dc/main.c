@@ -10,6 +10,7 @@ int main(int argc, char **argv) {
     double Vin = 5.0;
     double G1 = 1.0 / R1;
     double G2 = 1.0 / R2;
+    // struct spTemplate R1_template, R2_template;
 
     /* Create and build the matrix. */
     A = spCreate(2, 0, &err);
@@ -18,12 +19,19 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    // /* Get templates for resistors */
+    // spGetAdmittance(A, 1, 2, &R1_template);  // R1: node1 - node2
+    // spGetAdmittance(A, 2, 0, &R2_template);  // R2: node2 - ground
+
     /* Load the matrix. */
     spClear(A);
     spADD_REAL_ELEMENT(spGetElement(A, 1, 1), G1);
     spADD_REAL_ELEMENT(spGetElement(A, 1, 2), -G1);
     spADD_REAL_ELEMENT(spGetElement(A, 2, 1), -G1);
     spADD_REAL_ELEMENT(spGetElement(A, 2, 2), G1 + G2);
+    // spADD_REAL_QUAD(R1_template, G1);
+    // spADD_REAL_QUAD(R2_template, G2);
+
     spPrint(A, 0, 1, 1);  // Print A before spFactor
 
     if (spErrorState(A) >= spFATAL) {

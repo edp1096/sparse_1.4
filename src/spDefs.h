@@ -93,20 +93,14 @@
 
 /* Define macros for validating matrix. */
 #define SPARSE_ID 0xDeadBeef /* Arbitrary. */
-#define IS_SPARSE(matrix) (((matrix) != NULL) AND((matrix)->ID == SPARSE_ID))
-#define NO_ERRORS(matrix) (((matrix)->Error >= spOKAY) AND((matrix)->Error < spFATAL))
-#define IS_FACTORED(matrix) ((matrix)->Factored AND \
-                                 NOT(matrix)        \
-                                     ->NeedsOrdering)
+#define IS_SPARSE(matrix) (((matrix) != NULL) AND ((matrix)->ID == SPARSE_ID))
+#define NO_ERRORS(matrix) (((matrix)->Error >= spOKAY) AND ((matrix)->Error < spFATAL))
+#define IS_FACTORED(matrix) ((matrix)->Factored AND NOT (matrix)->NeedsOrdering)
 
-#define ASSERT_IS_SPARSE(matrix) vASSERT(IS_SPARSE(matrix), \
-                                         spcMatrixIsNotValid)
-#define ASSERT_NO_ERRORS(matrix) vASSERT(NO_ERRORS(matrix), \
-                                         spcErrorsMustBeCleared)
-#define ASSERT_IS_FACTORED(matrix) vASSERT(IS_FACTORED(matrix), \
-                                           spcMatrixMustBeFactored)
-#define ASSERT_IS_NOT_FACTORED(matrix) vASSERT(NOT(matrix)->Factored, \
-                                               spcMatrixMustNotBeFactored)
+#define ASSERT_IS_SPARSE(matrix) vASSERT(IS_SPARSE(matrix), spcMatrixIsNotValid)
+#define ASSERT_NO_ERRORS(matrix) vASSERT(NO_ERRORS(matrix), spcErrorsMustBeCleared)
+#define ASSERT_IS_FACTORED(matrix) vASSERT(IS_FACTORED(matrix), spcMatrixMustBeFactored)
+#define ASSERT_IS_NOT_FACTORED(matrix) vASSERT(NOT(matrix)->Factored, spcMatrixMustNotBeFactored)
 
 /* Macro commands */
 /* Macro functions that return the maximum or minimum independent of type. */

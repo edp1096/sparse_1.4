@@ -315,20 +315,28 @@ spError spFactor(spMatrix eMatrix) {
     if (Matrix->NeedsOrdering) {
         return spOrderAndFactor(eMatrix, (RealVector)NULL, 0.0, 0.0, DIAG_PIVOTING_AS_DEFAULT);
     }
-    if (NOT Matrix->Partitioned) spPartition(eMatrix, spDEFAULT_PARTITION);
+    if (NOT Matrix->Partitioned) {
+        spPartition(eMatrix, spDEFAULT_PARTITION);
+    }
 #if spCOMPLEX
-    if (Matrix->Complex) return FactorComplexMatrix(Matrix);
+    if (Matrix->Complex) {
+        return FactorComplexMatrix(Matrix);
+    }
 #endif
 
 #if REAL
     Size = Matrix->Size;
 
-    if (Matrix->Diag[1]->Real == 0.0) return ZeroPivot(Matrix, 1);
+    if (Matrix->Diag[1]->Real == 0.0) {
+        return ZeroPivot(Matrix, 1);
+    }
     Matrix->Diag[1]->Real = 1.0 / Matrix->Diag[1]->Real;
 
     /* Start factorization. */
     for (Step = 2; Step <= Size; Step++) {
-        if (Matrix->DoRealDirect[Step]) { /* Update column using direct addressing scatter-gather. */
+        if (Matrix->DoRealDirect[Step]) {
+            /* Update column using direct addressing scatter-gather. */
+
             register RealNumber *Dest = (RealNumber *)Matrix->Intermediate;
 
             /* Scatter. */
@@ -343,8 +351,9 @@ spError spFactor(spMatrix eMatrix) {
             while (pColumn->Row < Step) {
                 pElement = Matrix->Diag[pColumn->Row];
                 pColumn->Real = Dest[pColumn->Row] * pElement->Real;
-                while ((pElement = pElement->NextInCol) != NULL)
+                while ((pElement = pElement->NextInCol) != NULL) {
                     Dest[pElement->Row] -= pColumn->Real * pElement->Real;
+                }
                 pColumn = pColumn->NextInCol;
             }
 
@@ -356,9 +365,13 @@ spError spFactor(spMatrix eMatrix) {
             }
 
             /* Check for singular matrix. */
-            if (Dest[Step] == 0.0) return ZeroPivot(Matrix, Step);
+            if (Dest[Step] == 0.0) {
+                return ZeroPivot(Matrix, Step);
+            }
             Matrix->Diag[Step]->Real = 1.0 / Dest[Step];
-        } else { /* Update column using indirect addressing scatter-gather. */
+        } else {
+            /* Update column using indirect addressing scatter-gather. */
+
             register RealNumber **pDest = (RealNumber **)Matrix->Intermediate;
 
             /* Scatter. */
@@ -379,8 +392,9 @@ spError spFactor(spMatrix eMatrix) {
             }
 
             /* Check for singular matrix. */
-            if (Matrix->Diag[Step]->Real == 0.0)
+            if (Matrix->Diag[Step]->Real == 0.0) {
                 return ZeroPivot(Matrix, Step);
+            }
             Matrix->Diag[Step]->Real = 1.0 / Matrix->Diag[Step]->Real;
         }
     }
@@ -532,9 +546,7 @@ FactorComplexMatrix(MatrixPtr Matrix) {
  *      \a spINDIRECT_PARTITION, or \a spAUTO_PARTITION.
  */
 
-void spPartition(
-    spMatrix eMatrix,
-    int Mode) {
+void spPartition(spMatrix eMatrix, int Mode) {
     MatrixPtr Matrix = (MatrixPtr)eMatrix;
     register ElementPtr pElement, pColumn;
     register int Step, Size;
@@ -554,22 +566,24 @@ void spPartition(
     /* If partition is specified by the user, this is easy. */
     if (Mode == spDEFAULT_PARTITION) Mode = DEFAULT_PARTITION;
     if (Mode == spDIRECT_PARTITION) {
-        for (Step = 1; Step <= Size; Step++)
+        for (Step = 1; Step <= Size; Step++) {
 #if REAL
             DoRealDirect[Step] = YES;
 #endif
 #if spCOMPLEX
-        DoCmplxDirect[Step] = YES;
+            DoCmplxDirect[Step] = YES;
 #endif
+        }
         return;
     } else if (Mode == spINDIRECT_PARTITION) {
-        for (Step = 1; Step <= Size; Step++)
+        for (Step = 1; Step <= Size; Step++) {
 #if REAL
             DoRealDirect[Step] = NO;
 #endif
 #if spCOMPLEX
-        DoCmplxDirect[Step] = NO;
+            DoCmplxDirect[Step] = NO;
 #endif
+        }
         return;
     } else
         vASSERT(Mode == spAUTO_PARTITION, "Invalid partition code");
@@ -2577,10 +2591,7 @@ ComplexRowColElimination(
  *      Points to matrix element in lower triangular row.
  */
 
-static void
-UpdateMarkowitzNumbers(
-    MatrixPtr Matrix,
-    ElementPtr pPivot) {
+static void UpdateMarkowitzNumbers(MatrixPtr Matrix, ElementPtr pPivot) {
     register int Row, Col;
     register ElementPtr ColPtr, RowPtr;
     register int *MarkoRow = Matrix->MarkowitzRow, *MarkoCol = Matrix->MarkowitzCol;
@@ -2596,14 +2607,17 @@ UpdateMarkowitzNumbers(
         /* Form Markowitz product while being cautious of overflows. */
         if ((MarkoRow[Row] > LARGEST_SHORT_INTEGER AND MarkoCol[Row] != 0) OR(MarkoCol[Row] > LARGEST_SHORT_INTEGER AND MarkoRow[Row] != 0)) {
             Product = (double)MarkoCol[Row] * (double)MarkoRow[Row];
-            if (Product >= LARGEST_LONG_INTEGER)
+            if (Product >= LARGEST_LONG_INTEGER) {
                 Matrix->MarkowitzProd[Row] = LARGEST_LONG_INTEGER;
-            else
+            } else {
                 Matrix->MarkowitzProd[Row] = (long)Product;
-        } else
+            }
+        } else {
             Matrix->MarkowitzProd[Row] = MarkoRow[Row] * MarkoCol[Row];
-        if (MarkoRow[Row] == 0)
+        }
+        if (MarkoRow[Row] == 0) {
             Matrix->Singletons++;
+        }
     }
 
     for (RowPtr = pPivot->NextInRow; RowPtr != NULL; RowPtr = RowPtr->NextInRow) {
@@ -2613,15 +2627,17 @@ UpdateMarkowitzNumbers(
         /* Form Markowitz product while being cautious of overflows. */
         if ((MarkoRow[Col] > LARGEST_SHORT_INTEGER AND MarkoCol[Col] != 0) OR(MarkoCol[Col] > LARGEST_SHORT_INTEGER AND MarkoRow[Col] != 0)) {
             Product = (double)MarkoCol[Col] * (double)MarkoRow[Col];
-            if (Product >= LARGEST_LONG_INTEGER)
+            if (Product >= LARGEST_LONG_INTEGER) {
                 Matrix->MarkowitzProd[Col] = LARGEST_LONG_INTEGER;
-            else
+            } else {
                 Matrix->MarkowitzProd[Col] = (long)Product;
+            }
         } else
             Matrix->MarkowitzProd[Col] = MarkoRow[Col] * MarkoCol[Col];
         if ((MarkoCol[Col] == 0) AND(MarkoRow[Col] != 0))
             Matrix->Singletons++;
     }
+
     return;
 }
 
@@ -2641,10 +2657,7 @@ UpdateMarkowitzNumbers(
  *      Index of diagonal that is zero.
  */
 
-static int
-MatrixIsSingular(
-    MatrixPtr Matrix,
-    int Step) {
+static int MatrixIsSingular(MatrixPtr Matrix, int Step) {
     /* Begin `MatrixIsSingular'. */
 
     Matrix->SingularRow = Matrix->IntToExtRowMap[Step];
@@ -2652,10 +2665,7 @@ MatrixIsSingular(
     return (Matrix->Error = spSINGULAR);
 }
 
-static int
-ZeroPivot(
-    MatrixPtr Matrix,
-    int Step) {
+static int ZeroPivot(MatrixPtr Matrix, int Step) {
     /* Begin `ZeroPivot'. */
 
     Matrix->SingularRow = Matrix->IntToExtRowMap[Step];
