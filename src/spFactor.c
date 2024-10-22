@@ -300,8 +300,7 @@ Done:
  *  \see spOrderAndFactor()
  */
 
-spError
-spFactor(spMatrix eMatrix) {
+spError spFactor(spMatrix eMatrix) {
     MatrixPtr Matrix = (MatrixPtr)eMatrix;
     register ElementPtr pElement;
     register ElementPtr pColumn;
@@ -314,8 +313,7 @@ spFactor(spMatrix eMatrix) {
     ASSERT_IS_NOT_FACTORED(Matrix);
 
     if (Matrix->NeedsOrdering) {
-        return spOrderAndFactor(eMatrix, (RealVector)NULL,
-                                0.0, 0.0, DIAG_PIVOTING_AS_DEFAULT);
+        return spOrderAndFactor(eMatrix, (RealVector)NULL, 0.0, 0.0, DIAG_PIVOTING_AS_DEFAULT);
     }
     if (NOT Matrix->Partitioned) spPartition(eMatrix, spDEFAULT_PARTITION);
 #if spCOMPLEX

@@ -24,6 +24,7 @@ int main(int argc, char **argv) {
     spADD_REAL_ELEMENT(spGetElement(A, 1, 2), -G1);
     spADD_REAL_ELEMENT(spGetElement(A, 2, 1), -G1);
     spADD_REAL_ELEMENT(spGetElement(A, 2, 2), G1 + G2);
+    spPrint(A, 0, 1, 1);  // Print A before spFactor
 
     if (spErrorState(A) >= spFATAL) {
         spErrorMessage(A, stderr, argv[0]);
@@ -40,6 +41,8 @@ int main(int argc, char **argv) {
         spErrorMessage(A, stderr, argv[0]);
         return 1;
     }
+    spPrint(A, 0, 1, 1);  // Print A after spFactor
+
     spSolve(A, b, x);
 
     printf("Voltage at node 1 (V1): %.4f V\n", x[1]);
