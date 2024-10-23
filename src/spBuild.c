@@ -246,7 +246,7 @@ spFindElement(
  *  Error is not cleared in this routine.
  */
 
-spElement * spGetElement(spMatrix eMatrix, int Row, int Col) {
+spElement *spGetElement(spMatrix eMatrix, int Row, int Col) {
     MatrixPtr Matrix = (MatrixPtr)eMatrix;
     ElementPtr pElement;
 
@@ -328,11 +328,7 @@ spElement * spGetElement(spMatrix eMatrix, int Row, int Col) {
  *     the external to internal row number translation.
  */
 
-static void
-Translate(
-    MatrixPtr Matrix,
-    int *Row,
-    int *Col) {
+static void Translate(MatrixPtr Matrix, int *Row, int *Col) {
     register int IntRow, IntCol, ExtRow, ExtCol;
 
     /* Begin `Translate'. */
@@ -792,17 +788,15 @@ void spcLinkRows(MatrixPtr Matrix) {
  *     The allocated size of the matrix before it is expanded.
  */
 
-static void
-EnlargeMatrix(
-    MatrixPtr Matrix,
-    register int NewSize) {
+static void EnlargeMatrix(MatrixPtr Matrix, register int NewSize) {
     register int I, OldAllocatedSize = Matrix->AllocatedSize;
 
     /* Begin `EnlargeMatrix'. */
     Matrix->Size = NewSize;
 
-    if (NewSize <= OldAllocatedSize)
+    if (NewSize <= OldAllocatedSize) {
         return;
+    }
 
     /* Expand the matrix frame. */
     NewSize = MAX(NewSize, (int)(EXPANSION_FACTOR * OldAllocatedSize));
@@ -872,10 +866,7 @@ EnlargeMatrix(
  *     The allocated size of the translation arrays before being expanded.
  */
 
-static void
-ExpandTranslationArrays(
-    MatrixPtr Matrix,
-    register int NewSize) {
+static void ExpandTranslationArrays(MatrixPtr Matrix, register int NewSize) {
     register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
 
     /* Begin `ExpandTranslationArrays'. */

@@ -390,8 +390,7 @@ InitializeElementBlocks(
  *  spNO_MEMORY
  */
 
-ElementPtr
-spcGetFillin(MatrixPtr Matrix) {
+ElementPtr spcGetFillin(MatrixPtr Matrix) {
     struct FillinListNodeStruct *pListNode;
     ElementPtr pFillins;
 
