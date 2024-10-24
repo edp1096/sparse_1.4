@@ -1401,10 +1401,7 @@ QuicklySearchDiagonal(
  *      to determine if off diagonals are placed symmetricly.
  */
 
-static ElementPtr
-QuicklySearchDiagonal(
-    MatrixPtr Matrix,
-    int Step) {
+static ElementPtr QuicklySearchDiagonal(MatrixPtr Matrix, int Step) {
     register long MinMarkowitzProduct, *pMarkowitzProduct;
     register ElementPtr pDiag;
     int I;
@@ -2185,14 +2182,7 @@ void spcColExchange(
  *      Pointer used to traverse the column.
  */
 
-static void
-ExchangeColElements(
-    MatrixPtr Matrix,
-    int Row1,
-    register ElementPtr Element1,
-    int Row2,
-    register ElementPtr Element2,
-    int Column) {
+static void ExchangeColElements(MatrixPtr Matrix, int Row1, register ElementPtr Element1, int Row2, register ElementPtr Element2, int Column) {
     ElementPtr *ElementAboveRow1, *ElementAboveRow2;
     ElementPtr ElementBelowRow1, ElementBelowRow2;
     register ElementPtr pElement;

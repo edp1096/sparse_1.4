@@ -127,10 +127,7 @@ static void SolveComplexTransposedMatrix(MatrixPtr, RealVector, RealVector);
 
 /*VARARGS3*/
 
-void spSolve(
-    spMatrix eMatrix,
-    spREAL RHS[],
-    spREAL Solution[]
+void spSolve(spMatrix eMatrix, spREAL RHS[], spREAL Solution[]
 #if spCOMPLEX AND spSEPARATED_COMPLEX_VECTORS
     ,
     spREAL iRHS[], spREAL iSolution[]
@@ -259,11 +256,7 @@ void spSolve(
  *      Temporary storage for entries in arrays.
  */
 
-static void
-SolveComplexMatrix(
-    MatrixPtr Matrix,
-    RealVector RHS,
-    RealVector Solution
+static void SolveComplexMatrix(MatrixPtr Matrix, RealVector RHS, RealVector Solution
 #if spSEPARATED_COMPLEX_VECTORS
     ,
     RealVector iRHS, RealVector iSolution
@@ -413,10 +406,7 @@ SolveComplexMatrix(
 
 /*VARARGS3*/
 
-void spSolveTransposed(
-    spMatrix eMatrix,
-    spREAL RHS[],
-    spREAL Solution[]
+void spSolveTransposed(spMatrix eMatrix, spREAL RHS[], spREAL Solution[]
 #if spCOMPLEX AND spSEPARATED_COMPLEX_VECTORS
     ,
     spREAL iRHS[], spREAL iSolution[]

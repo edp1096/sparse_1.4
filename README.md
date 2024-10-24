@@ -24,9 +24,9 @@ cd bin
 ```
 
 ```powershell
-cd examples/dc
-gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/dc.exe
+cd examples/op
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/op.exe
 
 cd bin
-.\dc.exe
+.\op.exe
 ```
