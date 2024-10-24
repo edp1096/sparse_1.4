@@ -90,13 +90,9 @@ static char RCSid[] =
 #endif
 
 /* GCC or MinGW */
-#if defined(__MINGW32__) || defined(__MINGW64__)
+#if defined(__MINGW32__) || defined(__MINGW64__) || defined(__GNUC__)
 #include <time.h>
-#define HZ CLK_TCK
-#endif
-
-#if defined(__GNUC__)
-#include <time.h>
+// #define HZ CLK_TCK
 #define HZ CLOCKS_PER_SEC
 #endif
 
@@ -738,7 +734,9 @@ int main(int ArgCount, char **Args) {
     if (NOT SolutionOnly) {
         printf("\nAggregate resource usage:\n");
         printf("    Time required = %.4f seconds.\n", Time() - BeginTime);
-        printf("    Virtual memory used = %d kBytes.\n\n", ((int)sbrk(0)) / 1000);
+        // printf("    Virtual memory used = %d kBytes.\n\n", ((int)sbrk(0)) / 1000);
+        // printf("    Virtual memory used = %d kBytes.\n\n", ((uintptr_t)sbrk(0)) / 1000);
+        printf("    Virtual memory used = %d kBytes.\n\n", ((size_t)sbrk(0)) / 1000);
     }
     exit(0);
 }
