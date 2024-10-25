@@ -9,6 +9,7 @@
 #  On Unix machines run: gnumake
 
 CFLAGS = -O
+DEBUG_CFLAGS = -g
 LINTFLAGS = -lc -lm
 SHELL = /bin/sh
 CC = gcc
@@ -32,6 +33,9 @@ $(DESTINATION)	: $(LIBRARY) $(TESTO)
 $(LIBRARY)	: $(OFILES)
 	ar r   $(LIBRARY) $?
 	ranlib $(LIBRARY)
+
+debug: CFLAGS = $(DEBUG_CFLAGS)
+debug: clean $(LIBRARY)
 
 spice		: $(LIBRARY) spSMP.o
 	cp $(LIBRARY) ../lib/SMP.a

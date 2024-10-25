@@ -335,11 +335,7 @@ ElementPtr spcGetElement(MatrixPtr Matrix) {
  *  spNO_MEMORY
  */
 
-static void
-InitializeElementBlocks(
-    MatrixPtr Matrix,
-    int InitialNumberOfElements,
-    int NumberOfFillinsExpected) {
+static void InitializeElementBlocks(MatrixPtr Matrix, int InitialNumberOfElements, int NumberOfFillinsExpected) {
     ElementPtr pElement;
 
     /* Begin `InitializeElementBlocks'. */

@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build op", // launch.json의 preLaunchTask와 일치
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-I",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/examples/op/main.c",
+                "-L",
+                "${workspaceFolder}/lib",
+                "-lsparse",
+                "-o",
+                "${workspaceFolder}/bin/op.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
