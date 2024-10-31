@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
         return 1;
     }
     // spPrint(A, 1, 1, 1);  // Print A reordered after spFactor
-    spPrint(A, 0, 1, 0);  // Print A after spFactor
+    spPrint(A, 0, 1, 1);  // Print A after spFactor
 
     // Print RHS b
     printf("RHS b:\n");
