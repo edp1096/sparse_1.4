@@ -9,12 +9,12 @@
                 "-g",
                 "-I",
                 "${workspaceFolder}/src",
-                "${workspaceFolder}/examples/op/main.c",
+                "${workspaceFolder}/examples/factor1/main.c",
                 "-L",
                 "${workspaceFolder}/lib",
                 "-lsparse",
                 "-o",
-                "${workspaceFolder}/bin/op.exe"
+                "${workspaceFolder}/bin/factor1.exe"
             ],
             "group": {
                 "kind": "build",

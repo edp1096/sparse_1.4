@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug op.exe",
+            "name": "Debug binary",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}\\bin\\op.exe",
+            "program": "${workspaceFolder}\\bin\\factor1.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
