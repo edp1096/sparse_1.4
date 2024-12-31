@@ -34,15 +34,6 @@ cd bin
 ```
 
 ```powershell
-cd examples/factor1
-gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/factor1.exe
-cd ../..
-
-cd bin
-.\factor1.exe
-```
-
-```powershell
 cls
 
 cd src

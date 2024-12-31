@@ -1432,9 +1432,6 @@ static ElementPtr QuicklySearchDiagonal(MatrixPtr Matrix, int Step) {
      * vector.
      */
 
-    printf("\n=== QuicklySearchDiagonal Debug at Step %d ===\n", Step);
-    printf("Initial MarkowitzProd at step: %d\n", Matrix->MarkowitzProd[Step]);
-
     for (;;) /* Endless for loop. */
     {
         while (*(--pMarkowitzProduct) >= MinMarkowitzProduct) { /* Just passing through. */
