@@ -283,9 +283,7 @@ spElement *spGetElement(spMatrix eMatrix, int Row, int Col) {
                                                                     * Element does not exist or does not reside along diagonal.  Search
                                                                     * for element and if it does not exist, create it.
                                                                     */
-        pElement = spcCreateElement(Matrix, Row, Col,
-                                    &(Matrix->FirstInRow[Row]),
-                                    &(Matrix->FirstInCol[Col]), NO);
+        pElement = spcCreateElement(Matrix, Row, Col, &(Matrix->FirstInRow[Row]), &(Matrix->FirstInCol[Col]), NO);
     }
     /*
      * Cast pointer into a pointer to a RealNumber.  This requires that Real
@@ -696,7 +694,9 @@ ElementPtr spcCreateElement(MatrixPtr Matrix, int Row, register int Col, registe
 #endif
 
     /* If element is on diagonal, store pointer in Diag. */
-    if (Row == Col) Matrix->Diag[Row] = pCreatedElement;
+    if (Row == Col) {
+        Matrix->Diag[Row] = pCreatedElement;
+    }
 
     /* Splice element into column. */
     pCreatedElement->NextInCol = *ppAbove;

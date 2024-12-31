@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
 
     /* Set up the right-hand side vector b. */
     // b[1] = (1 / (R1 + R2)) * Vin;
-    b[1] = 1;
+    b[1] = 5;
     b[2] = 0.0;
     b[3] = 0.0;
     b[4] = 0.0;
@@ -70,8 +70,8 @@ int main(int argc, char **argv) {
         spErrorMessage(A, stderr, argv[0]);
         return 1;
     }
-    // spPrint(A, 1, 1, 1);  // Print A reordered after spFactor
-    spPrint(A, 0, 1, 1);  // Print A after spFactor
+    spPrint(A, 1, 1, 1);  // Print A reordered after spFactor
+    // spPrint(A, 0, 1, 1);  // Print A after spFactor
 
     // Print RHS b
     printf("RHS b:\n");

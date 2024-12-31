@@ -39,7 +39,7 @@ gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/factor1.exe
 cd ../..
 
 cd bin
-.\op.exe
+.\factor1.exe
 ```
 
 ```powershell
@@ -49,12 +49,63 @@ cd src
 make
 cd ..
 
-cd examples/factor1
-gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/factor1.exe
+cd examples/factor0
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/factor0.exe
 cd ../..
 
 cd bin
-.\factor1.exe
+.\factor0.exe
+cd ..
+
+```
+
+```powershell
+cls
+
+cd src
+make
+cd ..
+
+cd examples/solve1
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/solve1.exe
+cd ../..
+
+cd bin
+.\solve1.exe
+cd ..
+
+```
+
+```powershell
+cls
+
+cd src
+make
+cd ..
+
+cd examples/solve2
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/solve2.exe
+cd ../..
+
+cd bin
+.\solve2.exe
+cd ..
+
+```
+
+```powershell
+cls
+
+cd src
+make
+cd ..
+
+cd examples/op
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/op.exe
+cd ../..
+
+cd bin
+.\op.exe
 cd ..
 
 ```

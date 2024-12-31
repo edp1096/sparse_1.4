@@ -79,6 +79,7 @@
  * built.  The matrix can be allocated with size zero and expanded.
  */
 #define  EXPANDABLE                     YES
+// #define  EXPANDABLE                     NO
 
 /*!
  * This option allows the set of external row and column numbers
@@ -99,6 +100,7 @@
  * is the value of the largest given row or column numbers.
  */
 #define  TRANSLATE                      YES
+// #define  TRANSLATE                      NO
 
 /*!
  * Causes the spInitialize(), spGetInitInfo(), and
@@ -194,6 +196,7 @@
  * matrix.
  */
 #define  MODIFIED_NODAL                 YES
+// #define  MODIFIED_NODAL                 NO
 
 /*!
  * This specifies that the routines that allow four related
@@ -256,6 +259,7 @@
  * matrix should probably be reordered. Recomend \a NO.
  */
 #define  STABILITY                      YES
+// #define  STABILITY                      NO
 
 /*!
  * This specifies that spCondition() and spNorm(), the code that
@@ -263,6 +267,7 @@
  * should be compiled. Recomend \a NO.
  */
 #define  CONDITION                      YES
+// #define  CONDITION                      NO
 
 /*!
  * This specifies that spPseudoCondition(), the code that computes
@@ -270,6 +275,7 @@
  * matrix, should be compiled. Recomend \a NO.
  */
 #define  PSEUDOCONDITION                YES
+// #define  PSEUDOCONDITION                NO
 
 /*!
  * This specifies that the \a FORTRAN interface routines should be
@@ -286,6 +292,7 @@
  * option should be turned off. \a YES is recommended.
  */
 #define  DEBUG                          YES
+// #define  DEBUG                          NO
 
 #endif /* spINSIDE_SPARSE */
 
@@ -314,6 +321,7 @@
  * the real terms, the other with the imaginary. \a NO is recommended.
  */
 #define  spSEPARATED_COMPLEX_VECTORS    0
+// #define  spSEPARATED_COMPLEX_VECTORS    1
 
 #ifdef spINSIDE_SPARSE
 
@@ -347,6 +355,7 @@
  * spOrderAndFactor() is called from spFactor(). \a YES is recommended.
  */
 #define  DIAG_PIVOTING_AS_DEFAULT       YES
+// #define  DIAG_PIVOTING_AS_DEFAULT       NO
 
 /*!
  * This number multiplied by the size of the matrix equals the number
@@ -449,6 +458,7 @@
  * spPrint() per page width.
  */
 #define  PRINTER_WIDTH  80
+// #define  PRINTER_WIDTH  140
 
 
 
@@ -551,6 +561,7 @@
  * \a FULL. \a NONE is recommended.
  */
 #define  ANNOTATE               NONE
+// #define  ANNOTATE               FULL
 
 /*!
  * A possible value for \a ANNOTATE. Disables all annotation.

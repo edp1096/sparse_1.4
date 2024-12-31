@@ -961,22 +961,17 @@ ReadMatrixFromFile() {
 #if spSEPARATED_COMPLEX_VECTORS
                 Reads = sscanf(sInput, "%lf%lf", &RHS[I], &iRHS[I]);
 #else
-                Reads = sscanf(sInput, "%lf%lf", &cRHS[I].Real,
-                               &cRHS[I].Imag);
+                Reads = sscanf(sInput, "%lf%lf", &cRHS[I].Real, &cRHS[I].Imag);
 #endif
                 if (Reads != 2) {
-                    fprintf(stderr,
-                            "%s: syntax error in file `%s' at line %d.\n",
-                            ProgramName, FileName, LineNumber);
+                    fprintf(stderr, "%s: syntax error in file `%s' at line %d.\n", ProgramName, FileName, LineNumber);
                     return 1;
                 }
             } else /* Not complex. */
             {
                 Reads = sscanf(sInput, "%lf", &RHS[I]);
                 if (Reads != 1) {
-                    fprintf(stderr,
-                            "%s: syntax error in file `%s' at line %d.\n",
-                            ProgramName, FileName, LineNumber);
+                    fprintf(stderr, "%s: syntax error in file `%s' at line %d.\n", ProgramName, FileName, LineNumber);
                     return 1;
                 }
             }
@@ -1091,8 +1086,7 @@ CheckInAllComplexArrays() {
  *  INTERPRET THE COMMAND LINE ARGUMENTS
  */
 
-static int
-InterpretCommandLine(int ArgCount, char *Args[]) {
+static int InterpretCommandLine(int ArgCount, char *Args[]) {
     int I, FileCount = 0;
     char *GetProgramName();
 

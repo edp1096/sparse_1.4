@@ -193,9 +193,7 @@ static RealNumber ComplexCondition( MatrixPtr, RealNumber, int* );
  *      Number of symmetric twins corresponding to current zero diagonal.
  */
 
-void
-spMNA_Preorder( spMatrix eMatrix )
-{
+void spMNA_Preorder( spMatrix eMatrix ) {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  J, Size;
 ElementPtr  pTwin1, pTwin2;
@@ -255,14 +253,7 @@ BOOLEAN  Swapped, AnotherPassNeeded;
  *  count is terminated early at two.
  */
 
-static int
-CountTwins(
-    MatrixPtr Matrix,
-    int Col,
-    ElementPtr *ppTwin1,
-    ElementPtr *ppTwin2
-)
-{
+static int CountTwins(MatrixPtr Matrix, int Col, ElementPtr *ppTwin1, ElementPtr *ppTwin2) {
 int Row, Twins = 0;
 ElementPtr pTwin1, pTwin2;
 
@@ -297,13 +288,7 @@ ElementPtr pTwin1, pTwin2;
  *  linked.
  */
 
-static void
-SwapCols(
-    MatrixPtr Matrix,
-    ElementPtr pTwin1,
-    ElementPtr pTwin2
-)
-{
+static void SwapCols(MatrixPtr Matrix, ElementPtr pTwin1, ElementPtr pTwin2) {
 int Col1 = pTwin1->Col, Col2 = pTwin2->Col;
 
 /* Begin `SwapCols'. */
@@ -997,8 +982,7 @@ register  int  I, *pExtOrder;
  *      Temporary storage for real portion of determinant.
  */
 
-void
-spDeterminant(
+void spDeterminant(
     spMatrix eMatrix,
     int *pExponent,
     spREAL *pDeterminant

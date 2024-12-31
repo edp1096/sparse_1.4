@@ -314,8 +314,7 @@ static void SolveComplexMatrix(MatrixPtr Matrix, RealVector RHS, RealVector Solu
             pElement = pPivot->NextInCol;
             while (pElement != NULL) {
                 /* Cmplx expr: Intermediate[Element->Row] -= Temp * *Element. */
-                CMPLX_MULT_SUBT_ASSIGN(Intermediate[pElement->Row],
-                                       Temp, *pElement);
+                CMPLX_MULT_SUBT_ASSIGN(Intermediate[pElement->Row], Temp, *pElement);
                 pElement = pElement->NextInCol;
             }
         }
@@ -344,8 +343,9 @@ static void SolveComplexMatrix(MatrixPtr Matrix, RealVector RHS, RealVector Solu
     }
 #else
     ExtVector = (ComplexVector)Solution;
-    for (I = Size; I > 0; I--)
+    for (I = Size; I > 0; I--) {
         ExtVector[*(pExtOrder--)] = Intermediate[I];
+    }
 #endif
 
     return;
