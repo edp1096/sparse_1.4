@@ -315,6 +315,7 @@ spError spFactor(spMatrix eMatrix) {
     ASSERT_IS_NOT_FACTORED(Matrix);
 
     if (Matrix->NeedsOrdering) {
+        printf("!!!!");
         return spOrderAndFactor(eMatrix, (RealVector)NULL, 0.0, 0.0, DIAG_PIVOTING_AS_DEFAULT);
     }
     if (NOT Matrix->Partitioned) {
@@ -322,6 +323,7 @@ spError spFactor(spMatrix eMatrix) {
     }
 #if spCOMPLEX
     if (Matrix->Complex) {
+        printf("@@111");
         return FactorComplexMatrix(Matrix);
     }
 #endif
@@ -425,8 +427,7 @@ spError spFactor(spMatrix eMatrix) {
  *  Error is cleared in this function.
  */
 
-static int
-FactorComplexMatrix(MatrixPtr Matrix) {
+static int FactorComplexMatrix(MatrixPtr Matrix) {
     register ElementPtr pElement;
     register ElementPtr pColumn;
     register int Step, Size;

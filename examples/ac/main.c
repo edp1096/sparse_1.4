@@ -24,10 +24,14 @@ int main(int argc, char **argv) {
     spMatrix A;
     struct spTemplate Stamp[3];
     spError err;
+#if spSEPARATED_COMPLEX_VECTORS
+    double bReal[3], bImag[3], xReal[3], xImag[3];
+#else
     struct complex {
         double re;
         double im;
     } x[3], b[3];
+#endif
     double f, omega;
 
     /* Create and build the matrix. */
@@ -45,10 +49,17 @@ int main(int argc, char **argv) {
     }
 
     /* Drive the circuit at node 1. */
+#if spSEPARATED_COMPLEX_VECTORS
+    bReal[1] = 1.0;
+    bImag[1] = 0.0;
+    bReal[2] = 0.0;
+    bImag[2] = 0.0;
+#else
     b[1].re = 1.0;
     b[1].im = 0.0;
     b[2].re = 0.0;
     b[2].im = 0.0;
+#endif
 
     /* Perform AC analysis over a range of frequencies. */
     // for (f = 0.0; f <= 100000.0; f += 1000.0) {
@@ -67,8 +78,15 @@ int main(int argc, char **argv) {
             spErrorMessage(A, stderr, argv[0]);
             return 1;
         }
+        // spSolve(A, (spREAL *)b, (spREAL *)x);
+        // printf("f = %f, h = %f\n", f, sqrt(x[2].re * x[2].re + x[2].im * x[2].im));
+#if spSEPARATED_COMPLEX_VECTORS
+        spSolve(A, (spREAL *)bReal, (spREAL *)xReal, (spREAL *)bImag, (spREAL *)xImag);
+        printf("f = %f, h = %f\n", f, sqrt(xReal[2] * xReal[2] + xImag[2] * xImag[2]));
+#else
         spSolve(A, (spREAL *)b, (spREAL *)x);
         printf("f = %f, h = %f\n", f, sqrt(x[2].re * x[2].re + x[2].im * x[2].im));
+#endif
     }
     return 0;
 }

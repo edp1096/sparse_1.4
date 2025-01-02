@@ -100,3 +100,20 @@ cd bin
 cd ..
 
 ```
+
+```powershell
+cls
+
+cd src
+make
+cd ..
+
+cd examples/ac
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/ac.exe
+cd ../..
+
+cd bin
+.\ac.exe
+cd ..
+
+```

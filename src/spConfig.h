@@ -320,8 +320,8 @@
  * vector is represented by two arrays of \a spREALs, one with
  * the real terms, the other with the imaginary. \a NO is recommended.
  */
-#define  spSEPARATED_COMPLEX_VECTORS    0
-// #define  spSEPARATED_COMPLEX_VECTORS    1
+// #define  spSEPARATED_COMPLEX_VECTORS    0
+#define  spSEPARATED_COMPLEX_VECTORS    1
 
 #ifdef spINSIDE_SPARSE
 
