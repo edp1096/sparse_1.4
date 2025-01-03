@@ -40,12 +40,12 @@ cd src
 make
 cd ..
 
-cd examples/factor0
-gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/factor0.exe
+cd examples/factor1
+gcc -I ../../src main.c -L ../../lib -l sparse -o ../../bin/factor1.exe
 cd ../..
 
 cd bin
-.\factor0.exe
+.\factor1.exe
 cd ..
 
 ```
