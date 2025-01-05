@@ -4,7 +4,7 @@
 int main(int argc, char **argv) {
     spMatrix A;
     spError err;
-    double x[6], b[6];
+    double x[4], b[4];
     double R1 = 1000.0;
     double R2 = 2000.0;
     double Vin = 5.0;
@@ -21,17 +21,17 @@ int main(int argc, char **argv) {
 
     /* Load the matrix. */
     spClear(A);
-    spADD_REAL_ELEMENT(spGetElement(A, 1, 1), 10.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 1, 4), 4.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 2, 2), 20.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 2, 3), 5.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 3, 2), 2.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 3, 3), 30.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 4, 1), 4.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 4, 4), 40.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 4, 5), 6.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 5, 4), 6.0);
-    spADD_REAL_ELEMENT(spGetElement(A, 5, 5), 50.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 1, 1), 2.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 1, 2), 1.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 1, 3), -1.0);
+
+    spADD_REAL_ELEMENT(spGetElement(A, 2, 1), -3.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 2, 2), -1.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 2, 3), 2.0);
+
+    spADD_REAL_ELEMENT(spGetElement(A, 3, 1), -2.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 3, 2), 1.0);
+    spADD_REAL_ELEMENT(spGetElement(A, 3, 3), 2.0);
 
     spPrint(A, 0, 1, 1);  // Print A before spFactor
 
@@ -41,7 +41,8 @@ int main(int argc, char **argv) {
     }
 
     /* Set up the right-hand side vector b. */
-    b[1] = (1 / (R1 + R2)) * Vin;
+    // b[1] = (1 / (R1 + R2)) * Vin;
+    b[1] = 1;
     b[2] = 0.0;
     b[3] = 0.0;
     b[4] = 0.0;
