@@ -458,7 +458,7 @@
  * spPrint() per page width.
  */
 #define  PRINTER_WIDTH  80
-// #define  PRINTER_WIDTH  140
+// #define  PRINTER_WIDTH  120
 
 
 
